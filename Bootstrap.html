@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Tienda de mascotas en Medellín: alimentos, accesorios, peluquería y veterinaria básica con Patas Libres.">
+    <title>Patas Libres | Tienda de mascotas en Medellín</title>
+
+    <!-- 1. Bootstrap primero -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- 2. Estilos propios después de Bootstrap: solo identidad visual -->
+    <style>
+         :root {
+            --pl-ink: #12343b;
+            --pl-leaf: #2e9c6a;
+            --pl-mango: #ffb627;
+            --pl-sky: #dff3f0;
+            --pl-paper: #f7fbfa;
+            --bs-body-font-family: "Nunito", system-ui, sans-serif;
+            --bs-body-color: var(--pl-ink);
+            --bs-body-bg: var(--pl-paper);
+            --bs-link-color: var(--pl-leaf);
+            --bs-link-hover-color: #1f7650;
+            --bs-primary: var(--pl-leaf);
+            --bs-primary-rgb: 46, 156, 106;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        .navbar-brand {
+            font-family: "Fredoka", "Nunito", sans-serif;
+            font-weight: 600;
+            color: var(--pl-ink);
+        }
+        
+        h1 {
+            letter-spacing: -.01em;
+        }
+        
+        .navbar {
+            background: var(--pl-ink);
+        }
+        
+        .navbar .navbar-brand {
+            color: #fff;
+        }
+        
+        .navbar .nav-link {
+            color: rgba(255, 255, 255, .85);
+        }
+        
+        .navbar .nav-link:hover,
+        .navbar .nav-link:focus {
+            color: var(--pl-mango);
+        }
+        
+        .navbar-toggler {
+            border-color: rgba(255, 255, 255, .5);
+        }
+        
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+        
+        .btn-pl {
+            --bs-btn-bg: var(--pl-mango);
+            --bs-btn-border-color: var(--pl-mango);
+            --bs-btn-color: var(--pl-ink);
+            --bs-btn-hover-bg: #ffc54d;
+            --bs-btn-hover-border-color: #ffc54d;
+            --bs-btn-hover-color: var(--pl-ink);
+            --bs-btn-active-bg: #f0a800;
+            --bs-btn-active-border-color: #f0a800;
+            --bs-btn-active-color: var(--pl-ink);
+            font-weight: 700;
+        }
+        
+        .btn-outline-pl {
+            --bs-btn-color: var(--pl-ink);
+            --bs-btn-border-color: var(--pl-ink);
+            --bs-btn-hover-bg: var(--pl-ink);
+            --bs-btn-hover-border-color: var(--pl-ink);
+            --bs-btn-hover-color: #fff;
+            --bs-btn-active-bg: var(--pl-ink);
+            --bs-btn-active-color: #fff;
+            font-weight: 700;
+        }
+        
+        .hero {
+            background: var(--pl-sky);
+        }
+        
+        .hero-tile {
+            background: var(--pl-leaf);
+            border-radius: 2rem;
+            aspect-ratio: 1 / 1;
+            display: grid;
+            place-items: center;
+            font-size: clamp(6rem, 22vw, 11rem);
+            max-width: 26rem;
+            margin-inline: auto;
+            width: 100%;
+        }
+        
+        .tile {
+            border-radius: 1rem;
+            aspect-ratio: 4 / 3;
+            display: grid;
+            place-items: center;
+            font-size: 4rem;
+        }
+        
+        .tile-1 {
+            background: #fde7b0;
+        }
+        
+        .tile-2 {
+            background: #cdeee0;
+        }
+        
+        .tile-3 {
+            background: #d6e6fb;
+        }
+        
+        .tile-4 {
+            background: #fbd9d3;
+        }
+        
+        .tile-5 {
+            background: #e6dcf6;
+        }
+        
+        .tile-6 {
+            background: #fff0c2;
+        }
+        
+        .card {
+            border-color: rgba(18, 52, 59, .12);
+        }
+        
+        .price {
+            font-family: "Fredoka", sans-serif;
+            font-weight: 600;
+            font-size: 1.35rem;
+        }
+        
+        .price small {
+            font-family: "Nunito", sans-serif;
+            font-weight: 400;
+            font-size: .85rem;
+        }
+        
+        .step-list {
+            counter-reset: paso;
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .step-list li {
+            counter-increment: paso;
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step-list li::before {
+            content: counter(paso);
+            position: absolute;
+            left: 0;
+            top: -.15rem;
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 50%;
+            background: var(--pl-mango);
+            color: var(--pl-ink);
+            font-family: "Fredoka", sans-serif;
+            display: grid;
+            place-items: center;
+        }
+        
+        .section-alt {
+            background: #fff;
+        }
+        
+        footer {
+            background: var(--pl-ink);
+            color: rgba(255, 255, 255, .88);
+        }
+        
+        footer a {
+            color: var(--pl-mango);
+        }
+        
+         :focus-visible {
+            outline: 3px solid var(--pl-mango);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <a class="visually-hidden-focusable position-absolute p-2 bg-white" href="#contenido">Saltar al contenido</a>
+
+    <header>
+        <nav class="navbar navbar-expand-md" aria-label="Navegación principal">
+            <div class="container">
+                <a class="navbar-brand" href="#inicio">🐾 Patas Libres</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#citas">Citas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#encuentranos">Encuéntranos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="contenido">
+
+        <!-- Portada -->
+        <section id="inicio" class="hero py-5" aria-labelledby="titulo-inicio">
+            <div class="container">
+                <div class="row align-items-center g-4">
+                    <div class="col-12 col-md-7">
+                        <h1 id="titulo-inicio" class="display-5">Patas Libres | Tienda de mascotas en Medellín</h1>
+                        <p class="lead">Todo lo que tu perro, tu gato y tus demás compañeros necesitan: alimento, accesorios, peluquería y atención básica.</p>
+                        <a class="btn btn-pl btn-lg" href="#citas">Agendar una cita</a>
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <figure class="m-0">
+                            <div class="hero-tile" role="img" aria-label="Perro feliz con la lengua afuera">🐶</div>
+                            <figcaption class="visually-hidden">Un perro feliz, la mascota de Patas Libres</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categorías (equivale a "Nuestras rutas") -->
+        <section class="py-5" aria-labelledby="titulo-categorias">
+            <div class="container">
+                <h2 id="titulo-categorias" class="mb-4">Compra por mascota</h2>
+                <div class="row g-4">
+                    <article class="col-12 col-md-4">
+                        <div class="card h-100">
+                            <div class="tile tile-1 card-img-top" role="img" aria-label="Perro">🐕</div>
+                            <div class="card-body">
+                                <h3 class="h5 card-title">Perros</h3>
+                                <span class="badge text-bg-success">Más vendido</span>
+                                <p class="card-text mt-2">Concentrados, juguetes resistentes, correas y camas.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-12 col-md-4">
+                        <div class="card h-100">
+                            <div class="tile tile-2 card-img-top" role="img" aria-label="Gato">🐈</div>
+                            <div class="card-body">
+                                <h3 class="h5 card-title">Gatos</h3>
+                                <span class="badge text-bg-warning">Favorito</span>
+                                <p class="card-text mt-2">Arena, rascadores, alimento húmedo y snacks.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-12 col-md-4">
+                        <div class="card h-100">
+                            <div class="tile tile-3 card-img-top" role="img" aria-label="Ave">🦜</div>
+                            <div class="card-body">
+                                <h3 class="h5 card-title">Aves y pequeños</h3>
+                                <span class="badge text-bg-secondary">Variedad</span>
+                                <p class="card-text mt-2">Jaulas, semillas, heno y accesorios para conejos, hámsters y aves.</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ¿Quiénes somos? -->
+        <section class="section-alt py-5" aria-labelledby="titulo-nosotros">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <h2 id="titulo-nosotros">¿Quiénes somos?</h2>
+                        <p>Somos un equipo apasionado por las mascotas, dedicado a ofrecer una experiencia cercana de cuidado y compra en la ciudad de Medellín. Cada producto lo elegimos pensando en el bienestar de tu compañero.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicios -->
+        <section id="servicios" class="py-5" aria-labelledby="titulo-servicios">
+            <div class="container">
+                <h2 id="titulo-servicios" class="mb-4">Nuestros servicios</h2>
+                <div class="row g-4">
+                    <article class="col-12 col-sm-6 col-lg-3">
+                        <div class="card h-100">
+                            <div class="tile tile-4 card-img-top" role="img" aria-label="Tijeras y burbujas">🛁</div>
+                            <div class="card-body">
+                                <h3 class="h5 card-title">Peluquería y baño</h3>
+                                <p class="card-text">Baño, corte y cuidado de uñas para todas las razas y tamaños.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-12 col-sm-6 col-lg-3">
+                        <div class="card h-100">
+                            <div class="tile tile-5 card-img-top" role="img" aria-label="Estetoscopio">🩺</div>
+                            <div class="card-body">
+                                <h3 class="h5 card-title">Veterinaria básica</h3>
+                                <p class="card-text">Consultas generales, vacunación y desparasitación con profesionales.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-12 col-sm-6 col-lg-3">
+                        <div class="card h-100">
+                            <div class="tile tile-6 card-img-top" role="img" aria-label="Casa para mascotas">🏠</div>
+                            <div class="card-body">
+                                <h3 class="h5 card-title">Guardería por horas</h3>
+                                <p class="card-text">Cuidamos a tu mascota mientras trabajas o haces tus diligencias.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-12 col-sm-6 col-lg-3">
+                        <div class="card h-100">
+                            <div class="tile tile-2 card-img-top" role="img" aria-label="Plato de comida">🥣</div>
+                            <div class="card-body">
+                                <h3 class="h5 card-title">Domicilio de alimento <span class="badge text-bg-warning">Nuevo</span></h3>
+                                <p class="card-text">Recibe tu concentrado favorito en casa, en la fecha que elijas.</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Productos (equivale a "Nuestra flota") -->
+        <section id="productos" class="section-alt py-5" aria-labelledby="titulo-productos">
+            <div class="container">
+                <h2 id="titulo-productos" class="mb-4">Nuestros productos</h2>
+                <div class="row g-4">
+                    <article class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100">
+                            <div class="tile tile-1 card-img-top" role="img" aria-label="Bolsa de alimento">🦴</div>
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="h5 card-title">Concentrado adulto perro</h3>
+                                <p class="card-text">Bolsa de 8 kg con proteína de pollo y arroz.</p>
+                                <p class="price mt-auto mb-3">$98.000 <small>por bolsa</small></p>
+                                <a class="btn btn-pl" href="#citas">Pedir</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100">
+                            <div class="tile tile-2 card-img-top" role="img" aria-label="Pescado">🐟</div>
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="h5 card-title">Alimento húmedo gato</h3>
+                                <p class="card-text">Pack de 12 sobres con atún y salmón.</p>
+                                <p class="price mt-auto mb-3">$42.000 <small>por pack</small></p>
+                                <a class="btn btn-pl" href="#citas">Pedir</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100">
+                            <div class="tile tile-6 card-img-top" role="img" aria-label="Pelota">🎾</div>
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="h5 card-title">Pelota resistente</h3>
+                                <p class="card-text">Caucho natural, ideal para morder y lanzar.</p>
+                                <p class="price mt-auto mb-3">$15.000 <small>por unidad</small></p>
+                                <a class="btn btn-pl" href="#citas">Pedir</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100">
+                            <div class="tile tile-5 card-img-top" role="img" aria-label="Rascador">🐾</div>
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="h5 card-title">Rascador torre</h3>
+                                <p class="card-text">Tres niveles con cuerda de sisal y refugio.</p>
+                                <p class="price mt-auto mb-3">$135.000 <small>por unidad</small></p>
+                                <a class="btn btn-pl" href="#citas">Pedir</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100">
+                            <div class="tile tile-3 card-img-top" role="img" aria-label="Collar">🦮</div>
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="h5 card-title">Correa y arnés</h3>
+                                <p class="card-text">Set acolchado ajustable para caminatas cómodas.</p>
+                                <p class="price mt-auto mb-3">$48.000 <small>por set</small></p>
+                                <a class="btn btn-pl" href="#citas">Pedir</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100">
+                            <div class="tile tile-4 card-img-top" role="img" aria-label="Cama">🛏️</div>
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="h5 card-title">Cama ortopédica</h3>
+                                <p class="card-text">Espuma suave y funda lavable, tallas S a L.</p>
+                                <p class="price mt-auto mb-3">$89.000 <small>por unidad</small></p>
+                                <a class="btn btn-pl" href="#citas">Pedir</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ¿Cómo comprar? (equivale a "¿Cómo alquilar?") -->
+        <section class="py-5" aria-labelledby="titulo-como">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <h2 id="titulo-como" class="mb-4">¿Cómo comprar?</h2>
+                        <ol class="step-list">
+                            <li>Elige el producto o servicio en nuestra tienda o sitio web.</li>
+                            <li>Cuéntanos la especie, la raza y la edad de tu mascota.</li>
+                            <li>Recibe tu pedido con <em>bolsa reutilizable y obsequio</em> incluidos.</li>
+                            <li>¡Disfruta el <strong>bienestar</strong> de tu compañero y vuelve cuando quieras!</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Citas: formulario con validación nativa (equivale a Reservas) -->
+        <section id="citas" class="section-alt py-5" aria-labelledby="titulo-citas">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <h2 id="titulo-citas" class="mb-4">Agenda una cita</h2>
+                        <form action="#" method="post">
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label" for="nombre">Tu nombre</label>
+                                    <input class="form-control" type="text" id="nombre" name="nombre" required minlength="3" autocomplete="name">
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label" for="correo">Correo</label>
+                                    <input class="form-control" type="email" id="correo" name="correo" required autocomplete="email">
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <label class="form-label" for="mascota">Mascota</label>
+                                    <input class="form-control" type="text" id="mascota" name="mascota" required>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <label class="form-label" for="servicio">Servicio</label>
+                                    <select class="form-select" id="servicio" name="servicio" required>
+                    <option value="" selected disabled>Elige uno</option>
+                    <option>Peluquería y baño</option>
+                    <option>Veterinaria básica</option>
+                    <option>Guardería por horas</option>
+                  </select>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <label class="form-label" for="fecha">Fecha</label>
+                                    <input class="form-control" type="date" id="fecha" name="fecha" required>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-pl btn-lg" type="submit">Reservar cita</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Encuéntranos -->
+        <section id="encuentranos" class="py-5" aria-labelledby="titulo-encuentranos">
+            <div class="container">
+                <h2 id="titulo-encuentranos" class="mb-4">Encuéntranos</h2>
+                <div class="row g-4 align-items-center">
+                    <div class="col-12 col-md-6">
+                        <ul>
+                            <li>Precios accesibles y promociones por temporada.</li>
+                            <li>Asesoría veterinaria durante tu compra.</li>
+                            <li>Productos seleccionados y con registro sanitario.</li>
+                        </ul>
+                        <p class="d-flex flex-wrap gap-2">
+                            <a class="btn btn-outline-pl" href="https://www.google.com/maps/@6.2193664,-75.5882881,15z">Ver nuestra ubicación en el mapa</a>
+                            <a class="btn btn-outline-pl" href="mailto:hola@pataslibres.example">Escríbenos al correo</a>
+                            <a class="btn btn-outline-pl" href="#inicio">Ir arriba</a>
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="row g-2">
+                            <figure class="col-4 m-0">
+                                <div class="tile tile-1" role="img" aria-label="Tienda">🏪</div>
+                            </figure>
+                            <figure class="col-4 m-0">
+                                <div class="tile tile-3" role="img" aria-label="Perro y gato">🐕‍🦺</div>
+                            </figure>
+                            <figure class="col-4 m-0">
+                                <div class="tile tile-5" role="img" aria-label="Mapa">🗺️</div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-4">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12 col-md-4">
+                    <p class="h5 mb-1">Patas Libres</p>
+                    <p class="mb-0"><small>© 2026</small></p>
+                </div>
+                <address class="col-12 col-md-4 mb-0">
+          <h2 class="h6">Contacto</h2>
+          <a href="mailto:hola@pataslibres.example">hola@pataslibres.example</a><br>
+          <a href="https://wa.me/573000000000">WhatsApp</a>
+        </address>
+                <div class="col-12 col-md-4">
+                    <h2 class="h6">Horario</h2>
+                    <p class="mb-1">Lunes a viernes: 8:00 a. m. a 7:00 p. m.</p>
+                    <p class="mb-0">Sábados, domingos y festivos: 9:00 a. m. a 3:00 p. m.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
